@@ -9,8 +9,18 @@ class DaoUsuario implements iDAOUsuario
 	}
 
 
-	public function adicionar(Usuario $u){
+	public function cadastrar(Usuario $u){
 
+		$comando = "insert into tb_usuario (nome, sobrenome, login, senha) values (:nome, :sobrenome, :login, :senha)";
+
+		$stmt = Conexao::getInstance()->prepare($comando);
+
+		$run = $stmt->execute(array(
+    			':nome' => $u->getNome(),
+    			':sobrenome' => $u->getSobrenome(),
+    			':login' => $u->getLogin(),
+				':senha' => $u->getSenha()
+ 		));
 	}
 	public function alterar(Usuario $u){
 
@@ -20,7 +30,7 @@ class DaoUsuario implements iDAOUsuario
 	}
 	public function pesquisar(Usuario $u){
 
-		$comando = 'select * from tb_usuario ';
+		$comando = 'select id, nome, sobrenome, login, senha from tb_usuario ';
 
 		if (!empty($u->getLogin())){
 			if (empty($where)){
@@ -54,6 +64,8 @@ class DaoUsuario implements iDAOUsuario
 		$run = $stmt->execute();
 		return ($stmt->fetchAll(PDO::FETCH_ASSOC));
 	}
+
+
 
 }
 ?>

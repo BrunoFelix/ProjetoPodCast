@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Out-2016 às 02:46
+-- Generation Time: 16-Out-2016 às 21:28
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -29,15 +29,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_usuario` (
   `id` int(11) NOT NULL,
   `login` varchar(50) NOT NULL,
-  `senha` varchar(30) NOT NULL
+  `senha` varchar(30) NOT NULL,
+  `nome` varchar(30) NOT NULL,
+  `sobrenome` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_usuario`
 --
 
-INSERT INTO `tb_usuario` (`id`, `login`, `senha`) VALUES
-(1, 'admin', 'admin');
+INSERT INTO `tb_usuario` (`id`, `login`, `senha`, `nome`, `sobrenome`) VALUES
+(1, 'admin', 'admin', 'administrador', 'do sistema'),
+(2, 'brunofelixbarbosa123@hotmail.com', '123456789', 'bruno', 'felix');
 
 --
 -- Indexes for dumped tables
@@ -57,7 +60,7 @@ ALTER TABLE `tb_usuario`
 -- AUTO_INCREMENT for table `tb_usuario`
 --
 ALTER TABLE `tb_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
