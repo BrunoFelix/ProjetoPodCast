@@ -37,14 +37,14 @@
 
 		echo var_dump($result);
 
-		/*session_start();
+		session_start();
 
 		if (!empty($result)){
 			
 			$_SESSION['usuario'] = $usuario;
 
-			header("location:../gui/dist/perfil.php");
-		}else{
+			header("location:../gui/perfil.php");
+		} /*else{
 			$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
 			header("location:../gui/dist/login.php");	 
 		}*/
@@ -75,10 +75,10 @@
 			
 			$_SESSION['usuario'] = $result;
 
-			header("location:../gui/dist/perfil.php");
+			header("location:../gui/perfil.php");
 		}else{
 			$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
-			header("location:../gui/dist/login.php");	 
+			header("location:../gui/login.php");	 
 		}
 	}
 ?>
