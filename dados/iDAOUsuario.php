@@ -1,5 +1,5 @@
 <?php
-require_once('../basica/Usuario.php');
+
 
 interface iDAOUsuario
 {
