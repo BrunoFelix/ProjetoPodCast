@@ -4,20 +4,23 @@ class RNTeste extends Controller {
 	
 
 	public function index(){
-
-		
+	
 		$array = array('v1' => 2 , 'v2' => 9);
-		
+		if(!empty($_POST['nome'])){
+			echo $_POST['email'];
+			
+		}
 		$this->set('chupeta' , 'hodor');
 		$this->set('consulta' , $array);
 
 	}
 
+	
 	public function acao1(){
 
-		echo  'Eudes';
+		
 
-	
+		$this->set('semnocao' , array() );
 
 
 	}

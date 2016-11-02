@@ -33,21 +33,30 @@
 
 		$daousuario = new DaoUsuario();
 
-		$result = $daousuario->cadastrar($usuario);
+		try
+		{
+			$daousuario->cadastrar($usuario);
 
-		echo var_dump($result);
+			$result = $daousuario->pesquisar($usuario);
 
-		session_start();
+			//echo var_dump($result);
 
-		if (!empty($result)){
+			session_start();
+
 			
-			$_SESSION['usuario'] = $usuario;
+				
+				$_SESSION['usuario'] = $result;
 
-			header("location:../gui/perfil.php");
-		} /*else{
-			$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
-			header("location:../gui/dist/login.php");	 
-		}*/
+				header("location:../gui/perfil.php");
+			 /*else{
+				$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
+				header("location:../gui/dist/login.php");	 
+			}*/
+		}
+		catch (Exception $e)
+		{
+			echo 'erro';
+		}
 	}
 
 	function logar(){
