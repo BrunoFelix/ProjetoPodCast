@@ -1,4 +1,12 @@
+# Turn on URL rewriting
 RewriteEngine On
-RewriteRule %{REQUEST_FILENAME} !-f
-RewriteRule %{REQUEST_FILENAME} !-d
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond ${REQUEST_URI} ^.+$
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|php|ico|txt|pdf|xml)$ [OR]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^ - [L]
+
 RewriteRule ^(.*)$ index.php?pag=$1

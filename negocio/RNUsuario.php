@@ -1,5 +1,60 @@
 <?php
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
+	class RNUsuario extends Controller {
+
+		public function index(){
+
+		}
+
+		public function cadastrar(){
+
+		}
+
+		public function logar(){
+
+			$this->set('MENSAGEM_LOGIN' , '');
+
+			require_once('dados/DAOUsuario.php');
+			require_once('basica/Usuario.php');
+
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$login = $_POST["username"];
+				$senha = $_POST["password"];
+
+				if (empty($login) || empty($senha)){
+					exit;
+				}
+
+				$usuario = new Usuario();
+
+				$usuario->setLogin($login);
+				$usuario->setSenha($senha);
+
+				$daousuario = new DaoUsuario();
+
+				$result = $daousuario->pesquisar($usuario);
+
+				session_start();
+
+				if (!empty($result)){
+					
+					$_SESSION['usuario'] = $result;
+
+					header("location:perfil");
+				}else{
+					$this->set('MENSAGEM_LOGIN' , 'Usuário e/ou Senha incorretos!');
+				}
+			}
+		}
+
+		public function perfil(){
+			echo "aa";
+			die;
+
+		}
+
+	}
+	/*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		require_once('../dados/DAOUsuario.php');
 		require_once('../basica/Usuario.php');
@@ -52,7 +107,7 @@
 				$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
 				header("location:../gui/dist/login.php");	 
 			}*/
-		}
+	/*	}
 		catch (Exception $e)
 		{
 			echo 'erro';
@@ -89,5 +144,5 @@
 			$_SESSION['mensagem_login'] = 'Usuário e/ou Senha incorretos!';
 			header("location:../gui/login.php");	 
 		}
-	}
+	}*/
 ?>

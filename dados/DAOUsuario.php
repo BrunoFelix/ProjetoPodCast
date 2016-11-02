@@ -1,7 +1,7 @@
 <?php
-require_once('../basica/Usuario.php');
+require_once('basica/Usuario.php');
 require_once('iDAOUsuario.php');
-require_once('../util/conexao.php');
+require_once('util/conexao.php');
 
 class DaoUsuario implements iDAOUsuario
 {
