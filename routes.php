@@ -21,7 +21,10 @@
 			
 
 			foreach ($input as $key =>  $value) {
-					
+			
+				if(empty($value))
+					$value = "index";
+
 				switch ($key) {
 					case 0: $chamadaMetodo  .= '$obj  = new  RN'.ucfirst($value).'();'; $pasta = $value;  break;
 					case 1: 
@@ -43,6 +46,8 @@
 			}	
 
 	
+
+
 			if(empty($pasta))
 				$pasta = "index";
 

@@ -7249,7 +7249,6 @@ select,
 textarea {
   margin: 0;
   line-height: inherit;
-  border-radius: 0;
 }
 
 textarea {
@@ -15864,4 +15863,25 @@ pre {
     width: 180px;
     float: left;
     text-align: center;
+    height: 350px;
+  }
+
+  .podcast a{
+    text-decoration: none;
+    color: black;
+  }
+  .podcast a : hover{
+    text-decoration: none;
+    color: gray;
+  }
+
+  .podcast button{
+    border-radius: 100;
+    width: 100%;
+    height: 100%;
+    
+  }
+  .podcast form{
+    width: 100%;
+    height: 100%;
   }
