@@ -7,6 +7,7 @@
 	 $tela = "index";	
      $variables = array();
 
+
      if(!empty($valores)){
 
 		if(count($valores) > 2){
@@ -14,6 +15,10 @@
 			$input = array_splice($valores, 2);
 
 			$chamadaMetodo  = "";		
+
+			if(count($input) == 1)
+				array_push($input, "");	
+			
 
 			foreach ($input as $key =>  $value) {
 					
@@ -37,9 +42,10 @@
 
 			}	
 
-		
-			
-			
+	
+			if(empty($pasta))
+				$pasta = "index";
+
 			eval($chamadaMetodo);
 			
 			

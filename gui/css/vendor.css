@@ -15853,3 +15853,15 @@ pre {
   @media (max-width: 767px) {
     .header .header-block-nav .profile-dropdown-menu {
       margin-top: 8px; } }
+  .logo-podcasts{
+    width: 150px;
+
+  }
+  .logo-podcasts-titulo{
+
+  }
+  .podcast{
+    width: 180px;
+    float: left;
+    text-align: center;
+  }

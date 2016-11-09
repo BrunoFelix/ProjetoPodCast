@@ -10,7 +10,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" href="../gui/css/vendor.css">
-        <link rel="stylesheet" id="theme-style" href="../gui/css/app.css">
+        <link rel="stylesheet" href="gui/css/vendor.css">
         <!-- Theme initialization -->
     </head>
 
