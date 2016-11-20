@@ -7,7 +7,7 @@
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href="index2.php"> <i class="fa fa-home"></i> Dashboard </a>
+                                    <a href=""> <i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
                                     <a href=""> <i class="fa fa-th-large"></i> Meus PodCasts <i class="fa arrow"></i> </a>

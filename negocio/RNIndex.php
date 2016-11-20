@@ -10,8 +10,6 @@ class RNIndex extends Controller {
 	}
 
 	public function player(){
-		$aa = '';
-
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$html = file_get_contents($_POST["url"]);
 			$players = $this->buscarplayer($html);
