@@ -34,9 +34,7 @@
 							$action = $value;
 							$tela = $value;
 						}
-						
-							
-						
+										
 						$chamadaMetodo  .= '$obj->'.$action.'();'; 
 					break;
 					default:break;

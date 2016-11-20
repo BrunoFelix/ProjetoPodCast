@@ -22,9 +22,9 @@
     			<i class="fa fa-bars"></i>
     		</button> </div>
                     <div class="header-block header-block-search hidden-sm-down">
-                        <form role="search">
-                            <div class="input-container"> <i class="fa fa-search"></i> <input type="search" placeholder="Pesquisar por tema, autor, estilo, etc...">
-                                <div class="underline"></div>
+                        <form name="pesquisar" id="pesquisar" role="search" method="" action="">
+                            <div class="input-container"> <i class="fa fa-search"></i> <input name="pesquisar-texto" id="pesquisar-texto" type="search" placeholder="Digite o podcast que deseja ouvir"><a href="javascript: pesquisar()">Pesquisar</a>
+                                
                             </div>
                         </form>
                     </div>
@@ -34,7 +34,7 @@
                 <?php //require_once 'menu.php';?>
                
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
-                <article class="content dashboard-page">
+                <article class="content dashboard-page" id="content dashboard-page">
 
 					
             		<?php  
@@ -50,6 +50,8 @@
                 
                 <?php require_once 'footer.php';?>
             
+       
+
         <!-- Reference block for JS -->
         <div class="ref" id="ref">
             <div class="color-primary"></div>
@@ -63,3 +65,35 @@
     </body>
 
 </html>
+
+
+<script type="text/javascript">
+    function submitform() {
+        document.getElementById('formulario').submit();
+    }
+
+    function pesquisar(){
+        var display = document.getElementById('pesquisar-texto').value;
+        var pai = document.getElementById("content dashboard-page");
+        var nome = '';
+
+        for(var i = 0; i < pai.children.length; i++){
+                pai.children[i].style.visibility = 'visible';
+                pai.children[i].style.position = 'relative';
+                
+                nome = pai.children[i].name.toUpperCase();
+ 
+               //alert(nome);
+
+                if(nome.indexOf(display.toUpperCase()) <= -1){
+                    pai.children[i].style.position = 'absolute';
+                    pai.children[i].style.visibility = 'hidden';
+                }
+        }
+  
+
+        /*if document.getElementById(). <> display{
+            document.getElementById(display).style.display = 'none';
+        }*/
+    }
+</script>

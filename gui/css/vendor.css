@@ -15253,7 +15253,7 @@ pre {
 
 .footer {
   background-color: #fff;
-  position: absolute;
+  position: relative;
   width: 100%;
   //padding-left: 230px;
   right: 0;
@@ -15600,13 +15600,9 @@ pre {
       border: none;
       padding-left: 25px;
       height: 40px;
-      max-width: 150px; }
-      @media (max-width: 767px) {
-        .header .header-block-search .input-container input {
-          max-width: 140px; } }
-    .header .header-block-search .input-container input:focus + .underline {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1); }
+      width: 265px;
+      box-shadow: 0px 0px 1px rgba(000,000,000,0.5); }
+
 
 .sidebar-header .brand {
   color: #fff;
@@ -15863,25 +15859,81 @@ pre {
     width: 180px;
     float: left;
     text-align: center;
-    height: 350px;
+    height: 275px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 10px 10px 10px 10px;
+    color: #050505;
+    background: -moz-linear-gradient(
+      top,
+      #ffffff 0%,
+      #ebebeb 50%,
+      #dbdbdb 50%,
+      #b5b5b5);
+    background: -webkit-gradient(
+      linear, left top, left bottom,
+      from(#ffffff),
+      color-stop(0.50, #ebebeb),
+      color-stop(0.50, #dbdbdb),
+      to(#b5b5b5));
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #949494;
+    -moz-box-shadow:
+      0px 1px 3px rgba(000,000,000,0.5),
+      inset 0px 0px 2px rgba(255,255,255,1);
+    -webkit-box-shadow:
+      0px 1px 3px rgba(000,000,000,0.5),
+      inset 0px 0px 2px rgba(255,255,255,1);
+    box-shadow:
+      0px 1px 3px rgba(000,000,000,0.5),
+      inset 0px 0px 2px rgba(255,255,255,1);
+    text-shadow:
+      0px -1px 0px rgba(000,000,000,0.2),
+      0px 1px 0px rgba(255,255,255,1);
   }
+
+  .podcast img{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .podcast img :hover{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+  }
+
 
   .podcast a{
     text-decoration: none;
     color: black;
   }
-  .podcast a : hover{
+  .podcast a :hover{
     text-decoration: none;
     color: gray;
   }
 
-  .podcast button{
-    border-radius: 100;
-    width: 100%;
-    height: 100%;
-    
-  }
+  .podcast a :;
+   
   .podcast form{
     width: 100%;
     height: 100%;
+  }
+
+  .player{
+    border: 1px solid black;
+    width: 300px;
+    float: left;
+    height: 70px;
+  }
+  .player h1{
+    font-size: 12px;
   }

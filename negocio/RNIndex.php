@@ -5,7 +5,7 @@ class RNIndex extends Controller {
 
 	public function index(){
 	
-		$podcasts = $this->executarRss('https://itunes.apple.com/br/rss/toppodcasts/limit=20/xml', 5);
+		$podcasts = $this->executarRss('https://itunes.apple.com/br/rss/toppodcasts/limit=200/xml', 5);
 		$this->set('podcasts' , $podcasts);
 	}
 

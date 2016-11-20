@@ -1,13 +1,13 @@
 <?php
-
-	echo "<pre>";
-	echo($autor);
-	echo "<br>";
-	echo "<br>";
+	echo '<div name="titulo" id="titulo">
+			<h3>'.$autor.'</h3>
+		  </div>';
 	foreach($players as $key => $controle){
-		echo $titulos[$key];
-		echo "<br>";
-		echo '<audio src="'.$controle.'" controls> </audio>';
-		echo "<br>";
+		echo '<div name="player" class="player">
+			  	<div name='.$titulos[$key].' id='.$titulos[$key].'>
+					<h1>'.$titulos[$key].'</h1>
+					<audio src="'.$controle.'" controls> </audio>
+			  	</div>
+			  </div>';
 	}
 ?>
