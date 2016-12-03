@@ -9,4 +9,4 @@ RewriteCond %{REQUEST_FILENAME} -d [OR]
 RewriteCond %{REQUEST_FILENAME} -l
 RewriteRule ^ - [L]
 
-RewriteRule ^(.*)$ index.php?pag=$1
+RewriteRule ^(.*)$ index.php?pag=$1 [NC,L,QSA]

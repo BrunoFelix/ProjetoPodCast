@@ -1,3 +1,6 @@
+<?php 
+    if (isset($usuario)){
+?>
  <aside class="sidebar">
                     <div class="sidebar-container">
                         <div class="sidebar-header">
@@ -7,10 +10,10 @@
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
                                 <li class="active">
-                                    <a href=> <i class="fa fa-home"></i> Dashboard </a>
+                                    <a href=""> <i class="fa fa-home"></i> Ínicio </a>
                                 </li>
                                 <li>
-                                    <a href=""> <i class="fa fa-th-large"></i> Meus PodCasts <i class="fa arrow"></i> </a>
+                                    <a href=""> <i class="fa fa-th-large"></i> Favoritos<?php //echo $usuario[0]["nome"]; ?> <i class="fa arrow"></i> </a>
                                     <ul>
                                         <li> <a href="items-list.html">
     								Items List
@@ -27,3 +30,7 @@
                         
                     </footer>
                 </aside>
+
+<?php
+  }  
+?>

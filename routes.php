@@ -24,9 +24,16 @@
 			
 				if(empty($value))
 					$value = "index";
+				else{
+					$value = preg_replace('@(.*)?([?].*)@', '$1', $value);		
+				}
+
+
 
 				switch ($key) {
-					case 0: $chamadaMetodo  .= '$obj  = new  RN'.ucfirst($value).'();'; $pasta = $value;  break;
+					case 0: 
+						$chamadaMetodo  .= '$obj  = new  RN'.ucfirst($value).'();'; $pasta = $value; 
+					break;
 					case 1: 
 
 						$action = "index";
@@ -42,9 +49,6 @@
 
 
 			}	
-
-	
-
 
 			if(empty($pasta))
 				$pasta = "index";

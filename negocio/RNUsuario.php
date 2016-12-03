@@ -2,6 +2,13 @@
 	
 	class RNUsuario extends Controller {
 
+		
+		public function __construct(){
+			parent::__construct();
+		}
+
+
+
 		public function index(){
 
 		}
@@ -34,21 +41,30 @@
 
 				$result = $daousuario->pesquisar($usuario);
 
-				session_start();
-
 				if (!empty($result)){
 					
-					$_SESSION['usuario'] = $result;
+					$this->startLogin($result);
 
-					header("location:perfil");
+					header("location:index");
 				}else{
 					$this->set('MENSAGEM_LOGIN' , 'Usuário e/ou Senha incorretos!');
 				}
 			}
 		}
 
+
+		public function teste(){
+
+			$retorno['msg'] = '';	
+			if(!empty($_POST))
+				$retorno['msg'] = $_POST['teste'];
+			//header('');
+			echo json_encode($retorno);
+			exit; 
+		}
+
 		public function perfil(){
-			echo "aa";
+			var_dump($this->getUser());
 			die;
 
 		}

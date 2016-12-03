@@ -3,6 +3,11 @@
 class RNTeste extends Controller {
 	
 
+	public function __construct(){
+		parent::__construct();
+	}
+
+
 	public function index(){
 	
 		$array = array('v1' => 2 , 'v2' => 9);

@@ -1,17 +1,24 @@
 <?php
 
 class RNIndex extends Controller {
-	
+
+
+	public function __construct(){
+		parent::__construct();
+	}
+
 
 	public function index(){
 	
 		$podcasts = $this->executarRss('https://itunes.apple.com/br/rss/toppodcasts/limit=200/xml', 5);
 		$this->set('podcasts' , $podcasts);
+
 	}
 
 	public function player(){
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$html = file_get_contents($_POST["url"]);
+
+		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+			$html = file_get_contents($_GET["url"]);
 			$players = $this->buscarplayer($html);
 			$titulos = $this->buscartitulo($html);
 			$album = $this->buscarAlbum($html);
@@ -22,12 +29,17 @@ class RNIndex extends Controller {
 				$autor = $album[0];
 			}
 			
+			
 			$this->set("players", $players);
 			$this->set("titulos", $titulos);
 			$this->set("autor", $autor);
 		}else{
 			header("location: ../"); //volta para tela inicial
 		}
+
+		
+		
+		
 	}
 
 

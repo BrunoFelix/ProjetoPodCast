@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -26,8 +27,8 @@
     		</button> </div>
                     <div class="header-block header-block-search hidden-sm-down">
                         <form name="pesquisar" id="pesquisar" role="search" method="" action="">
-                            <div class="input-container"> <i class="fa fa-search"></i> 
-                                <input name="pesquisar-texto" id="pesquisar-texto" type="search" placeholder="Pesquisar" onkeyup="pesquisarqualquerletra();">   
+                            <div class="input-container"> <i class="fa fa-search"></i> <input name="pesquisar-texto" id="pesquisar-texto" type="search" placeholder="Digite o podcast que deseja ouvir"><a href="javascript: pesquisar()">Pesquisar</a>
+                                
                             </div>
                         </form>
                     </div>
@@ -53,7 +54,7 @@
                 
                 <?php require_once 'footer.php';?>
             
-       
+
 
         <!-- Reference block for JS -->
         <div class="ref" id="ref">
@@ -65,17 +66,16 @@
         </div>
         <script src="../gui/js/vendor.js"></script>
         <script src="../gui/js/app.js"></script>
+
+
+
     </body>
 
 </html>
 
 
+
 <script type="text/javascript">
-
-    function pesquisarqualquerletra(){
-        pesquisar();
-    }
-
 
     function submitform(display) {
 
