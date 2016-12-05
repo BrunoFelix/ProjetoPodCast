@@ -13042,11 +13042,10 @@ body {
   width: 350px;
 }
 .main-wrapper {
-  width: 100%;
-  position: absolute;
   height: 100%;
   overflow-y: auto;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  width: 100% }
 
 #ref .color-primary {
   color: #59c2e6; }
@@ -15252,13 +15251,14 @@ pre {
       min-height: 200px; }
 
 .footer {
-  background-color: #fff;
-  position: relative;
+  background-color: #d7dde4;
+  color: #4f5f6f;
+  position: fixed;
   width: 100%;
   //padding-left: 230px;
   right: 0;
   bottom: 0;
-  height: 50px;
+  height: 25px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -15275,8 +15275,8 @@ pre {
     position: fixed; }
   .footer .footer-block {
     vertical-align: middle;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 12px; }
   .footer .footer-github-btn {
     vertical-align: middle; }
@@ -15361,7 +15361,7 @@ pre {
   @media (max-width: 991px) {
     .sidebar {
       position: fixed;
-      left: -230px; } }
+       } }
   .sidebar-fixed .sidebar {
     position: fixed; }
   .sidebar-open .sidebar {
@@ -15526,8 +15526,14 @@ pre {
     vertical-align: initial; }
 
 .header .header-block-nav {
-  margin-left: auto;
+  margin-right: 2%;
   white-space: nowrap; }
+  @media (max-width: 767px) {
+    .header .header-block-nav {
+      margin-right: 10%;
+      white-space: nowrap;  }}
+
+
   .header .header-block-nav::after {
     content: "";
     display: table;
@@ -15932,10 +15938,11 @@ pre {
     border: 1px solid black;
     width: 300px;
     float: left;
-    height: 70px;
+    height: 110px;
   }
   .player h1{
     font-size: 12px;
+    height: 20px;
   }
 
   .pg-ctrl

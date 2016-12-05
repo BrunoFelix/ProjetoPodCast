@@ -28,8 +28,11 @@ class Controller {
 	}
 
 	public function getUser(){
-
 		return $_SESSION['usuario'];
+	}
+
+	public function getIdUser(){
+		return $_SESSION['usuario'][0]["id"];
 	}
 
 	public function isLoggedUser(){

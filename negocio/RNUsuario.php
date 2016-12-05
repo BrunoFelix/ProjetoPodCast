@@ -10,13 +10,121 @@
 
 
 		public function index(){
-
+			header("location: ../");
 		}
 
 		public function cadastrar(){
+			$this->set('MENSAGEM_CADASTRO' , '');
 
+			require_once('dados/DAOUsuario.php');
+			require_once('basica/Usuario.php');
+
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$nome = $_POST["firstname"];
+				$sobrenome = $_POST["lastname"];
+				$login = $_POST["email"];
+				$senha = $_POST["password"];
+
+				if (empty($login) || empty($senha) || empty($nome) || empty($sobrenome)){
+					//$this->set('MENSAGEM_CADASTRO' , 'Todos os campos precisam ser preenchidos!');
+					exit;
+				}
+
+				$daousuario = new DaoUsuario();
+	
+				$usuariovalida = new Usuario();
+
+				$usuariovalida->setLogin($login);
+
+				$result2 = $daousuario->pesquisar($usuariovalida);
+
+
+				if (!empty($result2)){
+					$this->set('MENSAGEM_CADASTRO' , 'Email já cadastrado!');
+				}else{
+
+					$usuario = new Usuario();
+
+					$usuario->setNome($nome);
+					$usuario->setSobrenome($sobrenome);
+					$usuario->setLogin($login);
+					$usuario->setSenha($senha);
+
+					$daousuario->cadastrar($usuario);
+
+					$result = $daousuario->pesquisar($usuario);
+
+					//echo var_dump($result);
+
+					if (!empty($result)){
+							
+							$this->startLogin($result);
+
+							header("location:../");
+					}else{
+						$this->set('MENSAGEM_CADASTRO' , 'Email e/ou Senha incorretos!');
+					}
+				}
+			}
 		}
 
+		public function alterar(){
+			$this->set('MENSAGEM_ALTERAR_CADASTRO' , '');
+
+			require_once('dados/DAOUsuario.php');
+			require_once('basica/Usuario.php');
+
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$id = $_POST["id"];
+				$nome = $_POST["firstname"];
+				$sobrenome = $_POST["lastname"];
+				$login = $_POST["email"];
+				$senha = $_POST["password"];
+
+				if (empty($login) || empty($senha) || empty($nome) || empty($sobrenome)){
+					//$this->set('MENSAGEM_CADASTRO' , 'Todos os campos precisam ser preenchidos!');
+					exit;
+				}
+
+				$daousuario = new DaoUsuario();
+	
+				$usuariovalida = new Usuario();
+
+				$usuariovalida->setId($id);
+				$usuariovalida->setLogin($login);
+
+				$result2 = $daousuario->pesquisar($usuariovalida, 'true');
+
+
+				if (!empty($result2)){
+					$this->set('MENSAGEM_ALTERAR_CADASTRO' , 'Email já cadastrado!');
+				}else{
+
+					$usuario = new Usuario();
+
+					$usuario->setId($id);
+					$usuario->setNome($nome);
+					$usuario->setSobrenome($sobrenome);
+					$usuario->setLogin($login);
+					$usuario->setSenha($senha);
+
+					$daousuario->alterar($usuario);
+
+					$result = $daousuario->pesquisar($usuario);
+
+					//echo var_dump($result);
+
+					if (!empty($result)){
+							
+							$this->startLogin($result);
+
+							header("location:../");
+					}else{
+						$this->set('MENSAGEM_ALTERAR_CADASTRO' , 'Email e/ou Senha incorretos!');
+					}
+				}
+			}
+		}
 		public function logar(){
 
 			$this->set('MENSAGEM_LOGIN' , '');
@@ -29,6 +137,7 @@
 				$senha = $_POST["password"];
 
 				if (empty($login) || empty($senha)){
+					//$this->set('MENSAGEM_CADASTRO' , 'Todos os campos precisam ser preenchidos!');
 					exit;
 				}
 
@@ -45,13 +154,106 @@
 					
 					$this->startLogin($result);
 
-					header("location:index");
+					header("location:../");
 				}else{
 					$this->set('MENSAGEM_LOGIN' , 'Usuário e/ou Senha incorretos!');
 				}
 			}
 		}
 
+		public function sair(){
+			$this->stopLogin();
+			header("location:../");
+		}
+
+		public function cadastrar_favorito(){
+
+
+			/*$msg = "Dados enviados:\r\n";			
+			    $msg .= $_POST["link_player"];
+			
+			echo $msg;*/
+
+			$this->set('MENSAGEM_CADASTRO_FAVORITO' , '');
+
+			require_once('dados/DAOFavorito.php');
+			require_once('basica/Favorito.php');
+
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				
+				$link_player = $_POST["link_player"];
+				$titulo = $_POST["titulo"];
+				$autor = $_POST["autor"];
+				$id_usuario = $this->getIdUser();
+
+				if (empty($link_player) || empty($titulo) || empty($autor) || empty($id_usuario)){
+					//$this->set('MENSAGEM_CADASTRO_FAVORITO' , 'Todos os campos precisam ser preenchidos!');
+					exit;
+				}
+
+				$favorito = new favorito();
+
+				$favorito->setLinkPlayer($link_player);
+				$favorito->setTitulo($titulo);
+				$favorito->setAutor($autor);
+				$favorito->setIdUsuario($id_usuario);
+
+				$daofavorito = new daoFavorito();
+
+				try{
+					$daofavorito->cadastrar($favorito);
+
+					$result = $daofavorito->pesquisar($favorito);
+
+					if (!empty($result)){
+						/*$var = "<script>javascript:history.back(-1)</script>";
+						echo $var;*/
+						$msg = "Adicionado aos favoritos com sucesso!";
+						echo $msg;
+
+					}
+
+				}catch(Exception $ex){
+					$msg = "Erro ao adicionado aos favoritos!";
+					echo $msg;
+
+					//$this->set('MENSAGEM_LOGIN' , 'Erro ao adicionar nos favoritos!');
+				}
+					
+			}
+
+		}
+
+		public function alterar_favorito(){
+
+
+		}
+
+		public function excluir_favorito(){
+
+
+		}
+
+		public function favoritos(){
+			$this->set('MENSAGEM_FAVORITO' , '');
+
+			if (!empty($this->getIdUser())){
+
+				require_once('dados/DAOFavorito.php');
+				require_once('basica/Favorito.php');
+
+				$favorito = new favorito();
+				$favorito->setIdUsuario($this->getIdUser());
+				$daofavorito = new daoFavorito();
+				$result = $daofavorito->pesquisar($favorito);
+
+				if (!empty($result)){
+					$this->set("result", $result);
+				}else{
+					$this->set('MENSAGEM_LOGIN' , 'Você não possui favoritos!');
+				}
+			}
+		}
 
 		public function teste(){
 

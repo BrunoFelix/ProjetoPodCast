@@ -5,6 +5,7 @@ class Usuario{
 	private $sobrenome;
 	private $login;
 	private $senha; 
+	private $email;
 
 	function __construct(){
 
@@ -53,6 +54,15 @@ class Usuario{
 	function getSobrenome()
 	{
 		return $this->sobrenome;
+	}
+
+	function setEmail($email)
+	{
+		$this->email = trim($email);
+	}
+	function getEmail()
+	{
+		return $this->email;
 	}
 
 	function __destruct(){

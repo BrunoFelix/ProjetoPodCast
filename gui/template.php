@@ -14,46 +14,78 @@
         <link rel="stylesheet" href="gui/css/vendor.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
         <!-- Theme initialization -->
     </head>
     <body onLoad="init()">
-        <div class="main-wrapper">
-            <div style="padding-left: 0" class="app" id="app">
-                <header class="header">
-                    <div class="header-block header-block-collapse hidden-lg-up"> <button class="collapse-btn" id="sidebar-collapse-btn">
-    			<i class="fa fa-bars"></i>
-    		</button> </div>
-                    <div class="header-block header-block-search hidden-sm-down">
-                        <form name="pesquisar" id="pesquisar" role="search" method="" action="">
-                            <div class="input-container"> <i class="fa fa-search"></i> <input name="pesquisar-texto" id="pesquisar-texto" type="search" placeholder="Digite o podcast que deseja ouvir"><a href="javascript: pesquisar()">Pesquisar</a>
-                                
-                            </div>
-                        </form>
-                    </div>
-                    
-                </header>
-               
-                <?php //require_once 'menu.php';?>
-               
-                <div class="sidebar-overlay" id="sidebar-overlay"></div>
-                <article class="content dashboard-page" id="content dashboard-page">
 
-					
-            		<?php  
-            		$pathC = $fileLoader->loader($tela,$pasta); 
-            		if (!empty($pathC)){
-            			require_once $pathC;
-            		}
-            		?>
-            		     
+        <div class="all">
+ 
+           <?php require_once 'menu.php';?>
 
+            <div class="main-wrapper" name="main-wrapper" id="main-wrapper">
+                <div style="padding: 0px 0px 50px 0px;" class="app" id="app">
+                    <header class="header">
+                        <div class="header-block header-block-search hidden-sm-down">
+                            <form name="pesquisar" id="pesquisar" role="search" method="" action="">
+                                <div class="input-container"> <i class="fa fa-search"></i> 
+                                    <input name="pesquisar-texto" id="pesquisar-texto" type="search" placeholder="Pesquisar" onkeyup="pesquisarqualquerletra();">          
+                                </div>
+                            </form>
+                        </div>
 
-                </article>
+                    <?php if (isset($usuario)){ ?>
+
+                        <div class="header-block header-block-nav" id="header-block-nav">
+                            <ul class="nav-profile">
+                                    
+                                <li class="profile dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $usuario[0]["nome"]; ?> </a>
+                                    <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <a class="dropdown-item" href="usuario/alterar"> <i class="fa fa-user icon"></i> Alterar Cadastro </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="usuario/sair"> <i class="fa fa-power-off icon"></i> Sair </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    <?php }else{ ?>
+
+                        <div class="header-block header-block-nav">
+                            <ul class="nav-profile">
+                                    
+                                <li class="profile dropdown">
+                                    <a href="usuario/logar"> Entrar </a>           
+                                </li>
+                            </ul>
+                        </div>
+
+                    <?php } ?>
                 
-                <?php require_once 'footer.php';?>
-            
+                    </header>
+                   
+                    
+                   
+                    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                    <article class="content dashboard-page" id="content dashboard-page">
+
+    					
+                		<?php  
+                		$pathC = $fileLoader->loader($tela,$pasta); 
+                		if (!empty($pathC)){
+                			require_once $pathC;
+                		}
+                		?>
+                		     
+
+
+                    </article>
+
+                    <?php require_once 'footer.php';?>
+        </div>   
 
 
         <!-- Reference block for JS -->
@@ -66,6 +98,8 @@
         </div>
         <script src="../gui/js/vendor.js"></script>
         <script src="../gui/js/app.js"></script>
+        <script src="gui/js/vendor.js"></script>
+        <script src="gui/js/app.js"></script>
 
 
 
@@ -74,8 +108,77 @@
 </html>
 
 
+<script type="text/javascript" language="javascript">
+
+    
+    /*function func(display) {
+
+         alert(display);
+        // Quando o formulário for enviado, essa função é chamada
+        $("#"+display).submit(function() {
+
+            // Colocamos os valores de cada campo em uma váriavel para facilitar a manipulação
+            var link_player = $("#link_player").val();
+            var titulo = $("#titulo").val();
+            var autor = $("#autor").val();
+            // Exibe mensagem de carregamento
+            // Fazemos a requisão ajax com o arquivo envia.php e enviamos os valores de cada campo através do método POST
+            $.post('envia.php', {link_player: link_player, titulo: titulo, autor: autor }, function(resposta) {
+ 
+                    if (resposta != false) {
+                        // Exibe o erro na div
+                        
+                    } 
+                    // Se resposta for false, ou seja, não ocorreu nenhum erro
+                    else {
+                        // Exibe mensagem de sucesso
+                       
+                    }
+            });
+        });
+   
+    /*var descendentes = document.querySelectorAll("td form");
+
+    for (var i = 0; i < descendentes.length; i++) {
+        cadastrar_favorito(descendentes[i].id);
+    }
+    
+    function cadastrar_favorito(display) {
+
+        alert(display);
+
+        $('#'+display).submit(function() {
+        var form = $(this);
+
+        $.post(form.attr('action'), form.serialize(), function(retorno) {
+            alert(retorno);
+        });
+        return false;
+        });
+
+
+    }*/
+</script>
 
 <script type="text/javascript">
+
+            //ajusta tela quando o usuário está logado
+    if (document.getElementById("sidebar").style.visibility != "hidden"){
+        document.getElementById("main-wrapper").style.marginLeft = "230px";
+        document.getElementById("main-wrapper").style.width = "88%";
+        document.getElementById("header-block-nav").style.marginRight = "10%"; 
+    }
+
+    
+
+</script>
+
+<script type="text/javascript">
+
+    function pesquisarqualquerletra(){
+        pesquisar();
+    }
+
 
     function submitform(display) {
 
@@ -89,6 +192,58 @@
                 }
         }
     }      
+
+/*    function func(display) {
+
+        //alert(display);
+
+            //NerdCast 541 - Qual é a música?
+
+        //alert(document.getElementById(display).id);
+
+        display = '#link_player'+display;
+
+        var descendentes = document.querySelectorAll("td form input");
+
+        for (var i = 0; i < descendentes.length; i++) {
+                if (descendentes[i].id == display){
+                    alert(descendentes[i].value());
+                }
+        }
+
+
+      /*  var campo = display;
+
+        alert(campo);
+
+         alert(document.getElementById(campo));
+         alert(campo);
+         alert(document.getElementById(campo).value());*/
+
+       /* function() {
+
+            // Colocamos os valores de cada campo em uma váriavel para facilitar a manipulação
+            var link_player = 'aaaaaa';
+            var titulo ='bbbbbb';
+            var autor = 'ccccccc';
+
+            alert(link_player);
+            // Exibe mensagem de carregamento
+            // Fazemos a requisão ajax com o arquivo envia.php e enviamos os valores de cada campo através do método POST
+            $.post('usuario/cadastrar_favorito', {link_player: link_player, titulo: titulo, autor: autor }, function(resposta) {
+ 
+                    if (resposta != false) {
+                        // Exibe o erro na div
+                        
+                    } 
+                    // Se resposta for false, ou seja, não ocorreu nenhum erro
+                    else {
+                        // Exibe mensagem de sucesso
+                       
+                    }
+            });
+        }*/
+    }
 
     function pesquisar(){
         var display = document.getElementById('pesquisar-texto').value;
@@ -115,7 +270,7 @@
         }*/
     }
 
-    var pager = new Pager('tabela_player', 24);
+    var pager = new Pager('tabela_player', 7);
         pager.init(); 
         pager.showPageNav('pager', 'pageNav'); 
         pager.showPage(1);
@@ -190,4 +345,6 @@
             element.innerHTML = pagerHtml;
         }
     }
+
+ 
 </script>
