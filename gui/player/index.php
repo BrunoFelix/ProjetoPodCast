@@ -20,6 +20,7 @@
 						  			<input type="hidden" id="titulo'.$key.'" name="titulo'.$key.'" value="'.$titulos[$key].'" />
 						  			<input type="hidden" id="autor'.$key.'" name="autor'.$key.'" value="'.$autor.'" />
 						  			<input type="submit" value="Adicionar aos favoritos"/>
+						  			<input type="button" id="add_favorite"  value="Adicionar aos favoritos"/>
 						  			 
 						  		</div>
 						  	</form>
