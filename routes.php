@@ -8,17 +8,37 @@
      $variables = array();
 
 
+
      if(!empty($valores)){
 
 		if(count($valores) > 2){
 
 			$input = array_splice($valores, 2);
 
+			
+
 			$chamadaMetodo  = "";		
 
-			if(count($input) == 1)
+			if(count($input) == 1){
 				array_push($input, "");	
-			
+			}else{
+				$input2 = $input;
+
+				$input = array(); 
+
+				$chamadaMetodo  = "";		
+
+				if(count($input) == 1)
+					array_push($input, "");	
+
+
+				if (count($input2) > 2){
+					$input[0] = $input2[0];
+					$input[1] = end($input2);
+				}else{
+					$input = $input2;
+				}
+			}
 
 			foreach ($input as $key =>  $value) {
 			
@@ -27,6 +47,7 @@
 				else{
 					$value = preg_replace('@(.*)?([?].*)@', '$1', $value);		
 				}
+
 
 
 

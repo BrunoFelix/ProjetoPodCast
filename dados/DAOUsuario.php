@@ -42,6 +42,8 @@ class DaoUsuario implements iDAOUsuario
 
 		$comando = 'select id, nome, sobrenome, login, senha from tb_usuario ';
 
+		$where = '';
+
 		if (!empty($u->getLogin())){
 			if (empty($where)){
 				$where = ' where login = :login';

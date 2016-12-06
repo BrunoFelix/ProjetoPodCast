@@ -69,6 +69,10 @@
 		}
 
 		public function alterar(){
+			if(!$this->isLoggedUser()){
+				header("location: index");
+			}	
+
 			$this->set('MENSAGEM_ALTERAR_CADASTRO' , '');
 
 			require_once('dados/DAOUsuario.php');
@@ -167,7 +171,9 @@
 		}
 
 		public function cadastrar_favorito(){
-
+			if(!$this->isLoggedUser()){
+				header("location: index");
+			}	
 
 			/*$msg = "Dados enviados:\r\n";			
 			    $msg .= $_POST["link_player"];
@@ -203,19 +209,12 @@
 				try{
 					$daofavorito->cadastrar($favorito);
 
-					$result = $daofavorito->pesquisar($favorito);
-
-					if (!empty($result)){
-						/*$var = "<script>javascript:history.back(-1)</script>";
-						echo $var;*/
-						$msg = "Adicionado aos favoritos com sucesso!";
-						echo $msg;
-
-					}
+					
+					header("location: ../usuario/favoritos");
+					
 
 				}catch(Exception $ex){
-					$msg = "Erro ao adicionado aos favoritos!";
-					echo $msg;
+					header("location: ../usuario/favoritos");
 
 					//$this->set('MENSAGEM_LOGIN' , 'Erro ao adicionar nos favoritos!');
 				}
@@ -230,11 +229,47 @@
 		}
 
 		public function excluir_favorito(){
+			if(!$this->isLoggedUser()){
+				header("location: index");
+			}	
 
+			$this->set('MENSAGEM_EXCLUIR_FAVORITO' , '');
+
+			require_once('dados/DAOFavorito.php');
+			require_once('basica/Favorito.php');
+
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$id = $_POST["id"];
+
+				$favorito = new favorito();
+
+				$favorito->setId($id);
+
+				$daofavorito = new daoFavorito();
+
+
+				try{
+					$daofavorito->excluir($favorito);
+
+					$result = $daofavorito->pesquisar($favorito);
+
+					header("location: ../usuario/favoritos");
+
+				}catch(Exception $ex){
+					$msg = "Erro ao adicionado aos favoritos!";
+					echo $msg;
+
+					//$this->set('MENSAGEM_LOGIN' , 'Erro ao adicionar nos favoritos!');
+				}
+			}
 
 		}
 
 		public function favoritos(){
+			if(!$this->isLoggedUser()){
+				header("location: index");
+			}
+
 			$this->set('MENSAGEM_FAVORITO' , '');
 
 			if (!empty($this->getIdUser())){
@@ -247,6 +282,8 @@
 				$daofavorito = new daoFavorito();
 				$result = $daofavorito->pesquisar($favorito);
 
+				$this->set("result", $result);
+				
 				if (!empty($result)){
 					$this->set("result", $result);
 				}else{

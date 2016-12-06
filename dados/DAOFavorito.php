@@ -36,7 +36,7 @@ class DaoFavorito implements iDAOFavorito
 	}
 	public function excluir(Favorito $f){
 
-		$comando = "delete from tb_favorito where id = :id)";
+		$comando = "delete from tb_favorito where id = :id";
 
 		$stmt = Conexao::getInstance()->prepare($comando);
 
@@ -47,7 +47,9 @@ class DaoFavorito implements iDAOFavorito
 	}
 	public function pesquisar(Favorito $f){
 
-		$comando = 'select link_player, titulo, autor, minutos_exec_player, id_usuario from tb_favorito ';
+		$comando = 'select id, link_player, titulo, autor, minutos_exec_player, id_usuario from tb_favorito ';
+
+		$where = '';
 
 		if (!empty($f->getLinkPlayer())){
 			if (empty($where)){
@@ -84,6 +86,8 @@ class DaoFavorito implements iDAOFavorito
 				$where = $where . ' and id_usuario = :id_usuario';
 			}
 		}
+
+		$where .= ' ORDER BY AUTOR ASC, TITULO ASC ';
 
 		$stmt = Conexao::getInstance()->prepare($comando . $where);
 
