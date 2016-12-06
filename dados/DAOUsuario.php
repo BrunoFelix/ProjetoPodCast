@@ -38,9 +38,27 @@ class DaoUsuario implements iDAOUsuario
 	public function excluir(Usuario $u){
 
 	}
+	
+	public function getFavoritos(Usuario $usuario){
+
+		$comando = 'SELECT * FROM  tb_favorito WHERE id_usuario = :id';
+		
+		$stmt = Conexao::getInstance()->prepare($comando);
+		$stmt->bindValue(':id', $usuario->getId());
+		$stmt->execute();
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		
+	}
+	
+	
+	
 	public function pesquisar(Usuario $u, $alt='false'){
 
-		$comando = 'select id, nome, sobrenome, login, senha from tb_usuario ';
+		$comando = 'SELECT id, nome, sobrenome, login, senha FROM  tb_usuario  ';
+
+		$where = '';
 
 		if (!empty($u->getLogin())){
 			if (empty($where)){
@@ -100,6 +118,8 @@ class DaoUsuario implements iDAOUsuario
 			$stmt->bindValue(':email', $u->getEmail());
 
 		$run = $stmt->execute();
+		
+		
 		return ($stmt->fetchAll(PDO::FETCH_ASSOC));
 	}
 

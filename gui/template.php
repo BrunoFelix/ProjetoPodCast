@@ -26,7 +26,7 @@
            <?php require_once 'menu.php';?>
 
             <div class="main-wrapper" name="main-wrapper" id="main-wrapper">
-                <div style="padding: 0px 0px 50px 0px;" class="app" id="app">
+                <div style="padding: 0px 0px 0px 0px;" class="app" id="app">
                     <header class="header">
                         <div class="header-block header-block-search hidden-sm-down">
                             <form name="pesquisar" id="pesquisar" role="search" method="" action="">
@@ -44,9 +44,9 @@
                                 <li class="profile dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $usuario[0]["nome"]; ?> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <a class="dropdown-item" href="usuario/alterar"> <i class="fa fa-user icon"></i> Alterar Cadastro </a>
+                                        <a class="dropdown-item" href="<?php echo BASE; ?>/usuario/alterar"> <i class="fa fa-user icon"></i> Alterar Cadastro </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="usuario/sair"> <i class="fa fa-power-off icon"></i> Sair </a>
+                                        <a class="dropdown-item" href="<?php echo BASE; ?>/usuario/sair"> <i class="fa fa-power-off icon"></i> Sair </a>
                                     </div>
                                 </li>
                             </ul>
@@ -58,7 +58,7 @@
                             <ul class="nav-profile">
                                     
                                 <li class="profile dropdown">
-                                    <a href="usuario/logar"> Entrar </a>           
+                                    <a href="<?php echo BASE; ?>/usuario/logar"> Entrar </a>           
                                 </li>
                             </ul>
                         </div>
@@ -164,9 +164,9 @@
 
             //ajusta tela quando o usuário está logado
     if (document.getElementById("sidebar").style.visibility != "hidden"){
-        document.getElementById("main-wrapper").style.marginLeft = "230px";
-        document.getElementById("main-wrapper").style.width = "88%";
-        document.getElementById("header-block-nav").style.marginRight = "10%"; 
+        document.getElementById("main-wrapper").style.marginLeft = "140px";
+        document.getElementById("main-wrapper").style.width = "92.7%";
+        document.getElementById("header-block-nav").style.marginRight = "10%";
     }
 
     
@@ -270,7 +270,7 @@
         }*/
     }
 
-    var pager = new Pager('tabela_player', 7);
+    var pager = new Pager('tabela_player', 16);
         pager.init(); 
         pager.showPageNav('pager', 'pageNav'); 
         pager.showPage(1);

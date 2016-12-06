@@ -10,7 +10,8 @@ class FileLoader{
 		$rootDir = implode('\\', $rootDir);
 		 
 		$path = $rootDir.'\\'.$dirRoot.'\\'.$pasta;
-		
+
+
 		$valores = scandir($path);
 		
 		$caminho = "";

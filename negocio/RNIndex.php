@@ -47,6 +47,14 @@ class RNIndex extends Controller {
 
 	}
 
+	public function alterar(){
+		header("location: ../usuario/alterar");
+	}
+
+	public function favoritos(){
+		header("location: ../usuario/favoritos");
+	}
+
 }
 
 ?>

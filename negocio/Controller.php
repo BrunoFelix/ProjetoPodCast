@@ -4,12 +4,15 @@ class Controller {
 
 	public function __construct(){
 		session_start();
-
+		$favorito = NULL;
 		$usuario = NULL;
-		if($this->isLoggedUser())	
+		if($this->isLoggedUser()){	
 			$usuario = $this->getUser();
+			$favorito = $this->getFavorito();
+		}
 	
 		$this->set("usuario", $usuario);
+		$this->set('favorito' , $favorito);
 
 	}
 
@@ -22,13 +25,19 @@ class Controller {
 	
 
 
-	public function startLogin($usuario){
+	public function startLogin($usuario , $favoritos = array()){
 		session_unset('usuario');
+		session_unset('favorito');
 		$_SESSION['usuario'] = $usuario;
+		$_SESSION['favorito'] = $favoritos;
 	}
 
 	public function getUser(){
 		return $_SESSION['usuario'];
+	}
+	
+	public function getFavorito(){
+		return $_SESSION['favorito'];
 	}
 
 	public function getIdUser(){

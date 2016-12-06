@@ -6,6 +6,7 @@ class Usuario{
 	private $login;
 	private $senha; 
 	private $email;
+	private $favorito = array();
 
 	function __construct(){
 
@@ -65,6 +66,14 @@ class Usuario{
 		return $this->email;
 	}
 
+	public function setFavorito($favorito){
+		$this->favorito = $favorito;
+	}
+	
+	public function getFavorito(){
+		return $this->favorito;	
+	}
+	
 	function __destruct(){
 
 	}
