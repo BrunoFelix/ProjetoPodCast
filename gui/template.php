@@ -243,7 +243,7 @@
                     }
             });
         }*/
-    }
+    //}
 
     function pesquisar(){
         var display = document.getElementById('pesquisar-texto').value;
